@@ -1,0 +1,40 @@
+:local(.navbar) {
+  border: 1px solid #edeeee;
+  order: 1;
+  padding: 0 20px;
+  background-color: #FFFFFF;
+}
+
+:local(.navbar__content) {
+  margin: 0 auto;
+  max-width: 710px;
+  padding:5px;
+  height: 75px;
+  display: flex;
+}
+
+:local(.navbar__content__brand) {
+  height: 100%;
+  background: url('./logo.png') no-repeat;
+  background-size: 135px;
+  background-position: center;
+  flex: 1;
+}
+
+
+:local(.navbar__content__login) {
+  flex: 1;
+  text-align: right;
+  padding-top: 28px;
+  padding-bottom: 28px;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+
+:local(.navbar__content__login__login-link) {
+  color:  #F06544
+}
+
+:local(.navbar__content__left) {
+  flex: 1;
+}
