@@ -16,7 +16,7 @@
 :local(.navbar__content__brand) {
   height: 100%;
   background: url('./logo.png') no-repeat;
-  background-size: 135px;
+  background-size: 235px;
   background-position: center;
   flex: 1;
 }
@@ -32,7 +32,8 @@
 }
 
 :local(.navbar__content__login__login-link) {
-  color:  #F06544
+  color: #4db1e5;
+  text-decoration: none;
 }
 
 :local(.navbar__content__left) {

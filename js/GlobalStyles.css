@@ -1,0 +1,68 @@
+html, body {
+    height:100%;
+    background-color: #fafafa;
+}
+
+:global(#root) {
+  height: 100%;
+}
+
+:global(.app-container) {
+  background-color: #fafafa;
+  height: 100%;
+}
+
+:global(.form-check-list) {
+  height: 100%;
+}
+
+:global(.item-container) {
+  box-flex: 1;
+  flex-grow: 1;
+  margin: 0 auto;
+  max-width: 600px;
+  width: 100%;
+}
+
+:global(.item-container__form-check) {
+  background-color: #fff;
+  border: 1px solid #edeeee;
+  border-radius: 3px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: -1px;
+  margin-right: -1px;
+}
+
+:global(.item-container__form-check__header) {
+  height: 20px;
+  padding: 20px 20px;
+  display: flex;
+  border-bottom: 1px solid #edeeee;
+}
+
+:global(.item-container__form-check__body) {
+  height: 200px;
+  padding: 20px 20px;
+  display: flex;
+  border-bottom: 1px solid #edeeee;
+}
+
+:global(.item-container__form-check__comments) {
+  height: 50px;
+  padding: 20px 20px;
+  display: flex;
+}
+
+:global(.item-container__form-check__header__title) {
+  color: #4db1e5;
+  text-decoration: none;
+  flex-shrink: 1;
+  flex: 1;
+}
+
+:global(.item-container__form-check__header__athlete) {
+  color: #a5a7aa;
+  text-decoration: none;
+  flex-shrink: 0;
+}
