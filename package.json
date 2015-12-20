@@ -31,9 +31,11 @@
     "react-relay": "^0.6.0",
     "react-router": "^1.0.2",
     "react-router-relay": "^0.8.0",
+    "script-loader": "^0.6.1",
     "style-loader": "^0.13.0",
     "superagent": "^1.6.1",
     "url-loader": "^0.5.7",
+    "video.js": "^5.4.4",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
   }

@@ -25,6 +25,10 @@ var compiler = webpack({
       {
         test: /\.png$/,
         loader: 'url-loader?limit=10000&mimetype=image/png'
+      },
+      {
+        test: /video\.js/,
+        loader: 'script'
       }
     ]
   },
