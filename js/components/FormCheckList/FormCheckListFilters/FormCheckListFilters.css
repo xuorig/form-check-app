@@ -30,3 +30,16 @@
 :local(.form-check-list__filters__body__item__label) {
   margin-right: 10px;
 }
+
+:local(.form-check-list__filters__body__item__team-pic) {
+  width: 25px;
+  height: 25px;
+  border-radius: 9px;
+  vertical-align: middle;
+}
+
+:local(.form-check-list__filters__body__item__team-name) {
+  margin-left: 8px;
+  color: #a5a7aa;
+  text-decoration: none;
+}

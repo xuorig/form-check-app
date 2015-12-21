@@ -12,7 +12,7 @@ class FormCheck extends React.Component {
       <article className="item-container__form-check">
         <header className="item-container__form-check__header">
           <a href="#" className="item-container__form-check__header__athlete">
-            Marc-Andre Giroux
+            {this.props.formcheck.user.username}
           </a>
           <a href={`#/formcheck/${rails_id}`} className="item-container__form-check__header__title">
             {this.props.formcheck.title}
@@ -37,10 +37,13 @@ export default Relay.createContainer(FormCheck, {
   fragments: {
     formcheck: () => Relay.QL`
       fragment on FormCheck {
-        id,
-        rails_id,
-        title,
-        description,
+        id
+        rails_id
+        title
+        description
+        user {
+          username
+        }
         ${CommentSection.getFragment('formcheck')}
       }
     `,
