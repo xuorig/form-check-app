@@ -24,7 +24,7 @@ class NavBar extends React.Component {
         <div className={styles.navbar__content}>
           <div className={styles.navbar__content__brand}><a href="#"></a></div>
           <div className={styles.navbar__content__nav}>
-            <a className={styles['navbar__content__nav-link']}href="#">About</a>
+            <a className={styles['navbar__content__nav-link']}href="#/about">About</a>
             <a className={styles['navbar__content__nav-link']}href="#">FAQ</a>
             { userLink }
           </div>

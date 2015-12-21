@@ -2,7 +2,7 @@ import Relay from 'react-relay';
 
 export default class SignInMutation extends Relay.Mutation {
   getMutation() {
-    return Relay.QL`mutation {signup}`;
+    return Relay.QL`mutation {signin}`;
   }
 
   getVariables() {

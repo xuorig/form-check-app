@@ -11,6 +11,7 @@ import FormCheckPage from './components/FormCheckPage/FormCheckPage';
 import FormCheckList from './components/FormCheckList/FormCheckList';
 import SignInPage from './components/SignInPage/SignInPage';
 import SignUpPage from './components/SignUpPage/SignUpPage';
+import AboutPage from './components/AboutPage/AboutPage';
 
 export default (
   <Route
@@ -34,6 +35,10 @@ export default (
     <Route
         path="/signup"
         component={SignUpPage}
+    />
+    <Route
+        path="/about"
+        component={AboutPage}
     />
   </Route>
 )

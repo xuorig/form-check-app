@@ -64,7 +64,7 @@ class SignInPage extends React.Component {
               <input className="form-check-form__input-field" type="password" ref="password"/>
             </div>
             <div>
-              <button type="submit" className="form-check-form__submit-button">Sign In</button>
+              <button onClick={this.onSubmit.bind(this)} type="submit" className="form-check-form__submit-button">Sign In</button>
             </div>
           </form>
         </div>
