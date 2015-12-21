@@ -13,7 +13,7 @@ class App extends React.Component {
     return (
       <div className="app-container">
         <NavBar viewer={this.props.viewer}/>
-        <FormCheckList viewer={this.props.viewer} />
+        {this.props.children}
       </div>
     );
   }

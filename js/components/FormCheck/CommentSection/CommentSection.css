@@ -1,0 +1,40 @@
+:local(.comment-section) {
+  padding: 20px 20px;
+}
+
+:local(.comment-section__comment) {
+  margin-bottom: 10px;
+}
+
+:local(.comment-section__comment__add-comment) {
+  display: flex
+}
+
+:local(.comment-section__comment__add-comment__input) {
+  margin-left: 10px;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #eee;
+  outline: none;
+}
+
+:local(.comment-section__comment__content) {
+  margin-left: 10px;
+}
+
+:local(.comment-section__comment__author) {
+  flex-shrink: 0;
+}
+
+:local(.comment-section__comment__author__picture) {
+  width: 25px;
+  height: 25px;
+  border-radius: 9px;
+  vertical-align: middle;
+}
+
+:local(.comment-section__comment__author__name) {
+  margin-left: 8px;
+  color: #a5a7aa;
+  text-decoration: none;
+}

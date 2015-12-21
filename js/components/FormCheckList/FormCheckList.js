@@ -2,17 +2,22 @@
 
 import React from 'react';
 import Relay from 'react-relay';
-import FormCheckListItem from './FormCheckListItem/FormCheckListItem';
+import FormCheck from '../FormCheck/FormCheck';
+import FormCheckListFilters from './FormCheckListFilters/FormCheckListFilters';
+import styles from './FormCheckList.css';
 
 class FormCheckList extends React.Component {
   render() {
     return (
-      <div className="form-check-list">
-        {this.props.viewer.formchecks.edges.map(edge =>
-          <div className="item-container" key={edge.node.id}>
-            <FormCheckListItem formcheck={edge.node} />
-          </div>
-        )}
+      <div className={styles['form-check-list']}>
+        <FormCheckListFilters />
+        <div className={styles['form-check-list__list']}>
+          {this.props.viewer.formchecks.edges.map(edge =>
+            <div className="item-container" key={edge.node.__dataID__}>
+              <FormCheck formcheck={edge.node} />
+            </div>
+          )}
+        </div>
       </div>
     );
   }
@@ -25,7 +30,7 @@ export default Relay.createContainer(FormCheckList, {
         formchecks(first: 10) {
           edges {
             node {
-              ${FormCheckListItem.getFragment('formcheck')}
+              ${FormCheck.getFragment('formcheck')}
             },
           },
         },

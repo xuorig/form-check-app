@@ -1,0 +1,44 @@
+:local(.form-check-history) {
+  background-color: #fff;
+  border: 1px solid #edeeee;
+  border-radius: 3px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: -1px;
+  margin-right: -1px;
+}
+
+:local(.form-check-history__header) {
+  height: 18px;
+  padding: 25px 20px;
+  display: flex;
+  border-bottom: 1px solid #edeeee;
+}
+
+:local(.form-check-history__body__item) {
+  border-bottom: 1px solid #edeeee;
+  display: flex;
+  padding: 10px 20px;
+}
+
+:local(.form-check-history__body__item__photo) {
+  vertical-align: middle;
+  height: 80px;
+  width: 106px;
+}
+
+:local(.form-check-history__body__item__info) {
+  padding: 20px;
+}
+
+:local(.form-check-history__body__item__info__title) {
+  color: #4db1e5;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+:local(.form-check-history__body__item__info__date) {
+  font-size: 0.8em;
+  color: #a5a7aa;
+  text-decoration: none;
+}

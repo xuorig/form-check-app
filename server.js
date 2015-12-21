@@ -27,7 +27,7 @@ var compiler = webpack({
         loader: 'url-loader?limit=10000&mimetype=image/png'
       },
       {
-        test: /video\.js/,
+        test: /moment\.js/,
         loader: 'script'
       }
     ]

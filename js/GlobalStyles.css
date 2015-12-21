@@ -1,6 +1,9 @@
 html, body {
     height:100%;
     background-color: #fafafa;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    color: #333;
 }
 
 :global(#root) {
@@ -9,10 +12,6 @@ html, body {
 
 :global(.app-container) {
   background-color: #fafafa;
-  height: 100%;
-}
-
-:global(.form-check-list) {
   height: 100%;
 }
 
@@ -47,12 +46,6 @@ html, body {
 
 :global(.item-container__form-check__body__description) {
   padding: 20px 20px;
-}
-
-:global(.item-container__form-check__comments) {
-  height: 50px;
-  padding: 20px 20px;
-  display: flex;
 }
 
 :global(.item-container__form-check__header__title) {

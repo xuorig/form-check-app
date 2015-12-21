@@ -1,0 +1,19 @@
+/* TABLET LANDSCAPE / DESKTOP */
+@media only screen and (min-width: 768px) {
+  :local(.form-check-page) {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  :local(.form-check-page__form-check-container) {
+    flex: 2;
+    margin-right: 20px;
+  }
+
+  :local(.form-check-page__history-container) {
+    flex: 1;
+    margin-left: 20px;
+  }
+}

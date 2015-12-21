@@ -1,0 +1,12 @@
+:local(.form-check-list) {
+  height: 100%;
+  display: flex;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+:local(.form-check-list__list) {
+  height: 100%;
+  flex: 2;
+}
