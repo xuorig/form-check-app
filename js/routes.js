@@ -9,6 +9,8 @@ import FormCheckQueries from './queries/FormCheckQueries';
 import App from './components/App';
 import FormCheckPage from './components/FormCheckPage/FormCheckPage';
 import FormCheckList from './components/FormCheckList/FormCheckList';
+import SignInPage from './components/SignInPage/SignInPage';
+import SignUpPage from './components/SignUpPage/SignUpPage';
 
 export default (
   <Route
@@ -24,6 +26,14 @@ export default (
         path="/formcheck/:id"
         component={FormCheckPage}
         queries={ViewerQueries}
+    />
+    <Route
+        path="/signin"
+        component={SignInPage}
+    />
+    <Route
+        path="/signup"
+        component={SignUpPage}
     />
   </Route>
 )

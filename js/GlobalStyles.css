@@ -18,7 +18,7 @@ html, body {
 :global(.item-container) {
   box-flex: 1;
   flex-grow: 1;
-  margin: 0 auto;
+  margin-left: auto;
   max-width: 600px;
   width: 100%;
 }
@@ -70,4 +70,73 @@ html, body {
   flex: 1;
   flex-shrink: 0;
   text-align: right;
+}
+
+:global(.page) {
+  padding-bottom: 30px;
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid #edeeee;
+  border-radius: 3px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+:global(.page__header) {
+  height: 70px;
+  padding: 0px 20px;
+  display: flex;
+  border-bottom: 1px solid #edeeee;
+  width: 100%;
+}
+
+:global(.page__header__title) {
+  font-weight: 300;
+  font-size: 1.5em;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+:global(.page__body) {
+  width: 60%;
+  padding: 0px 20px;
+  margin: 0 auto;
+}
+
+:global(.form-check-form) {
+  margin: 0 auto;
+  text-align: center;
+}
+
+:global(.form-check-form__field-container) {
+  display:block;
+  text-align: left;
+  margin-top: 30px;
+}
+
+:global(.form-check-form__label) {
+  display:block;
+  font-weight: 300;
+  font-size: 1em;
+  color: #a5a7aa;
+}
+
+:global(.form-check-form__input-field) {
+  width: 100%;
+  height: 55px;
+}
+
+:global(.form-check-form__submit-button) {
+  width: 100%;
+  height: 55px;
+  margin-top: 30px;
+  background: linear-gradient(to bottom,#4DB1E5 0,#3498CC 100%);
+  box-shadow: 0 1px 0 #1A7EB2;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: 300;
+  font-size: 1.3em;
 }

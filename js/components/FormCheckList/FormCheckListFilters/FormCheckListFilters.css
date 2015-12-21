@@ -17,6 +17,11 @@
   border-bottom: 1px solid #edeeee;
 }
 
+:local(.form-check-list__filters__header__title) {
+  font-weight: 300;
+  font-size: 1.2em;
+}
+
 :local(.form-check-list__filters__body) {
   padding: 0px 20px;
 }

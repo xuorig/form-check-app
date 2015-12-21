@@ -8,7 +8,7 @@ class FormCheckListFilters extends React.Component {
     return (
       <div className={styles['form-check-list__filters']}>
         <div className={styles['form-check-list__filters__header']}>
-          Filters
+          <span className={styles['form-check-list__filters__header__title']}>Filters</span>
         </div>
         <div className={styles['form-check-list__filters__body']}>
           <div className={styles['form-check-list__filters__body__item']}>
@@ -33,7 +33,7 @@ class FormCheckListFilters extends React.Component {
           </div>
         </div>
         <div className={styles['form-check-list__filters__header']}>
-          My Teams
+          <span className={styles['form-check-list__filters__header__title']}>My Teams</span>
         </div>
         <div className={styles['form-check-list__filters__body']}>
           <div className={styles['form-check-list__filters__body__item']}>

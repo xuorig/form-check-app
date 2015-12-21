@@ -10,7 +10,7 @@ import { RelayRouter } from 'react-router-relay';
 
 import routes from './routes';
 
-var token = localStorage.getItem('formcheckapp_token');
+var token = localStorage.getItem('formcheck_token');
 var headers = token ? {Authorization: token} : {};
 
 Relay.injectNetworkLayer(
