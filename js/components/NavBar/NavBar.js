@@ -6,17 +6,18 @@ import ReactDOM from 'react-dom';
 
 import 'babel/polyfill';
 import styles from './NavBar.css';
+import DropDownMenu from './DropDownMenu/DropDownMenu';
 
 class NavBar extends React.Component {
   render() {
     let userLink;
     if (this.props.viewer.currentUser) {
-      userLink = <a href="#/login" className={styles['navbar__content__nav-link']}>{this.props.viewer.currentUser.email}</a>
+      userLink = <DropDownMenu viewer={this.props.viewer} />;
     } else {
       userLink = (<span>
         <a href="#/signin" className={styles['navbar__content__nav-link']}>Sign In</a>
         <a href="#/signup" className={styles['navbar__content__nav-link']}>Sign Up</a>
-      </span>)
+      </span>);
     }
 
     return (
@@ -40,6 +41,7 @@ export default Relay.createContainer(NavBar, {
       fragment on Viewer {
         currentUser {
           email
+          username
         }
       }
     `,
