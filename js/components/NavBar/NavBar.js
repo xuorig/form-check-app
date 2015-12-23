@@ -23,7 +23,7 @@ class NavBar extends React.Component {
     return (
       <nav className={styles.navbar}>
         <div className={styles.navbar__content}>
-          <div className={styles.navbar__content__brand}><a href="#"></a></div>
+          <a href="#" className={styles.navbar__content__brand}></a>
           <div className={styles.navbar__content__nav}>
             <a className={styles['navbar__content__nav-link']}href="#/about">About</a>
             <a className={styles['navbar__content__nav-link']}href="#">FAQ</a>

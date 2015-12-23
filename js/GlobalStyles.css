@@ -126,6 +126,56 @@ html, body {
 :global(.form-check-form__input-field) {
   width: 100%;
   height: 55px;
+  border: 1px solid rgb(238, 238, 238);
+}
+
+:global(.form-check-form__textarea-field) {
+  width: 100%;
+  height: 100px;
+  border: 1px solid rgb(238, 238, 238);
+}
+
+:global(.form-check-form__select-field) {
+  width: 100%;
+  height: 30px;
+  border: 1px solid rgb(238, 238, 238);
+  background: white;
+}
+
+:global(.form-check-form__field-container__radio-container) {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+:global(.form-check-form__field-container__radio-container__field_description) {
+  font-size: 0.8em;
+  color: #a5a7aa;
+  margin-top: 5px;
+}
+
+:global(.form-check-form__field-container__radio-container__field-label) {
+  font-size: 0.8em;
+  margin-left: 5px;
+}
+
+:global(.form-check-form__field-container__dropzone) {
+  text-align: center;
+  margin-top: 10px;
+  width: 100%;
+  height: 80px;
+  border: 1px dashed rgb(238, 238, 238);
+}
+
+:global(.form-check-form__field-container__dropzone__inner) {
+  font-size: 1em;
+  font-weight: 300;
+  color: #a5a7aa;
+  margin-top: 28px;
+}
+
+
+:global(.form-check-form__field-container__dropzone--active) {
+
 }
 
 :global(.form-check-form__submit-button) {

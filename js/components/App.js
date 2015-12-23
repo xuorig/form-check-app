@@ -4,7 +4,6 @@ import React from 'react';
 import Relay from 'react-relay';
 import 'normalize.css';
 import styles from '../GlobalStyles.css';
-
 import NavBar from './NavBar/NavBar';
 import FormCheckList from './FormCheckList/FormCheckList';
 

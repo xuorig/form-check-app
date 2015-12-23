@@ -55,11 +55,32 @@
   border-bottom: 1px solid #edeeee;
 }
 
+:local(.drop-down-menu__menu__list__item--main) {
+  border-bottom: 1px solid #edeeee;
+  background: #4DB1E5;
+}
+
+
+:local(.drop-down-menu__menu__list__item:hover) {
+  background: #FBFBFB;
+}
+
+:local(.drop-down-menu__menu__list__item--main:hover) {
+  background: #3498CC;
+}
+
 :local(.drop-down-menu__menu--visible) {
   display: block;
 }
 
 :local(.drop-down-menu__menu__link) {
+  font-size: 0.8em;
   color: #4db1e5;
+  text-decoration: none;
+}
+
+:local(.drop-down-menu__menu__link--main) {
+  font-size: 0.8em;
+  color: white;
   text-decoration: none;
 }

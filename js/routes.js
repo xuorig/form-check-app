@@ -12,6 +12,8 @@ import FormCheckList from './components/FormCheckList/FormCheckList';
 import SignInPage from './components/SignInPage/SignInPage';
 import SignUpPage from './components/SignUpPage/SignUpPage';
 import AboutPage from './components/AboutPage/AboutPage';
+import ProfilePage from './components/ProfilePage/ProfilePage';
+import NewFormCheckPage from './components/NewFormCheckPage/NewFormCheckPage';
 
 export default (
   <Route
@@ -39,6 +41,16 @@ export default (
     <Route
         path="/about"
         component={AboutPage}
+    />
+    <Route
+        path="/profile"
+        component={ProfilePage}
+        queries={ViewerQueries}
+    />
+    <Route
+        path="/new-form-check"
+        component={NewFormCheckPage}
+        queries={ViewerQueries}
     />
   </Route>
 )

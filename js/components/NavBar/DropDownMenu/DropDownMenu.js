@@ -57,18 +57,23 @@ class DropDownMenu extends React.Component {
         <div className={dropdownClass}>
           <ul className={styles['drop-down-menu__menu__list']}>
             <li className={styles['drop-down-menu__menu__list__item']}>
-              <a href="#" className={styles['drop-down-menu__menu__link']}>
+              <a href="#/profile" className={styles['drop-down-menu__menu__link']}>
                 My Profile
               </a>
             </li>
             <li className={styles['drop-down-menu__menu__list__item']}>
-              <a href="#" className={styles['drop-down-menu__menu__link']}>
+              <a href="#/settings" className={styles['drop-down-menu__menu__link']}>
                 Settings
               </a>
             </li>
             <li className={styles['drop-down-menu__menu__list__item']}>
-              <a href="#" className={styles['drop-down-menu__menu__link']}>
+              <a href="#/create-team" className={styles['drop-down-menu__menu__link']}>
                 Create a Team
+              </a>
+            </li>
+            <li className={styles['drop-down-menu__menu__list__item'] + ' ' + styles['drop-down-menu__menu__list__item--main']}>
+              <a href="#/new-form-check" className={styles['drop-down-menu__menu__link--main']}>
+                Upload FormCheck
               </a>
             </li>
           </ul>
