@@ -25,7 +25,7 @@ class FormCheck extends React.Component {
            <div className="item-container__form-check__body__description">
              {this.props.formcheck.description}
            </div>
-           <FormCheckVideo />
+           <FormCheckVideo url={this.props.formcheck.video_url}/>
         </div>
         <CommentSection formcheck={this.props.formcheck}/>
       </article>
@@ -39,6 +39,7 @@ export default Relay.createContainer(FormCheck, {
       fragment on FormCheck {
         id
         rails_id
+        video_url
         title
         description
         user {

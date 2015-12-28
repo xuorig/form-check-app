@@ -51,13 +51,27 @@ class NewFormCheckPage extends React.Component {
       contentType: false,
       type: 'POST',
       dataType: 'xml',
-      success: function(data) {
+      xhr: () => {
+        // get the native XmlHttpRequest object
+        var xhr = $.ajaxSettings.xhr();
+        // set the onprogress event handler
+        xhr.upload.onprogress = function(evt) {
+          console.log('progress', evt.loaded/evt.total*100)
+        };
+        // set the onload event handler
+        xhr.upload.onload = function() {
+          console.log('DONE!')
+        };
+        // return the customized object
+        return xhr;
+      },
+      success: (data) => {
         // This is ugly, why cant we $(data) ?
         let uploadLocation = data.firstChild.firstChild.innerHTML;
         self.submitFormCheck(uploadLocation);
 
       },
-      error: function(err) {
+      error: (err) => {
         console.log(err);
       },
     });
@@ -80,6 +94,8 @@ class NewFormCheckPage extends React.Component {
     };
 
     this.setState({loading: true});
+
+    debugger;
 
     Relay.Store.update(new AddFormCheckMutation({
       title: title,

@@ -27,7 +27,7 @@ export default Relay.createContainer(FormCheckList, {
   fragments: {
     viewer: () => Relay.QL`
       fragment on Viewer {
-        formchecks(first: 10) {
+        formchecks(first: 3) {
           edges {
             node {
               ${FormCheck.getFragment('formcheck')}

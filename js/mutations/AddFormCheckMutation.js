@@ -6,6 +6,7 @@ export default class AddFormCheckMutation extends Relay.Mutation {
   }
 
   getVariables() {
+    debugger;
     return {
       title: this.props.title,
       description: this.props.description,
@@ -20,12 +21,6 @@ export default class AddFormCheckMutation extends Relay.Mutation {
     return Relay.QL`
       fragment on AddFormCheckPayload {
         rails_id
-        title
-        description
-        videoUrl
-        mouvementId
-        sportId
-        visibility
       }
     `;
   }
