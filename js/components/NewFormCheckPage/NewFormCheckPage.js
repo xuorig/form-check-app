@@ -8,17 +8,10 @@ import Select from 'react-select';
 
 import 'babel/polyfill';
 import styles from './NewFormCheckPage.css';
-
+import $ from 'jquery';
 require('react-select/dist/react-select.css');
 
-const FLAVOURS = [
-	{ label: 'Chocolate', value: 'chocolate' },
-	{ label: 'Vanilla', value: 'vanilla' },
-	{ label: 'Strawberry', value: 'strawberry' },
-	{ label: 'Caramel', value: 'caramel' },
-	{ label: 'Cookies and Cream', value: 'cookiescream' },
-	{ label: 'Peppermint', value: 'peppermint' },
-];
+import AddFormCheckMutation from '../../mutations/AddFormCheckMutation';
 
 class NewFormCheckPage extends React.Component {
   constructor(props) {
@@ -26,16 +19,81 @@ class NewFormCheckPage extends React.Component {
     this.state = {
       message: null,
       loading: false,
+      file: null,
       visibility: null,
     };
   }
 
   onSubmit(e) {
+    e.preventDefault();
+    let fields = this.props.viewer.currentUser.presigned_s3_post.fields;
+    let url = this.props.viewer.currentUser.presigned_s3_post.url;
+    let file = this.state.file
 
+    let form = new FormData();
+    form.append('acl', fields.acl)
+    form.append('key',fields.key)
+    form.append('policy', fields.policy)
+    form.append('success_action_status', fields.success_action_status)
+    form.append('x-amz-algorithm', fields.x_amz_algorithm)
+    form.append('x-amz-credential', fields.x_amz_credential)
+    form.append('x-amz-date', fields.x_amz_date)
+    form.append('x-amz-signature', fields.x_amz_signature)
+    form.append('file', file);
+
+    let self = this;
+
+    $.ajax({
+      url: url,
+      data: form,
+      cache: false,
+      processData: false,
+      contentType: false,
+      type: 'POST',
+      dataType: 'xml',
+      success: function(data) {
+        // This is ugly, why cant we $(data) ?
+        let uploadLocation = data.firstChild.firstChild.innerHTML;
+        self.submitFormCheck(uploadLocation);
+
+      },
+      error: function(err) {
+        console.log(err);
+      },
+    });
   }
 
-  onDrop(e) {
-    console.log(e);
+  submitFormCheck(uploadLocation) {
+    let title = this.refs.title.value;
+    let description  = this.refs.description.value;
+
+    let onSuccess = (response) => {
+      this.setState({loading: false});
+      console.log(response);
+      window.location = "/";
+    };
+
+    let onFailure = (transaction) => {
+      this.setState({loading: false});
+      var error = transaction.getError() || new Error('Mutation failed.');
+      console.error(error);
+    };
+
+    this.setState({loading: true});
+
+    Relay.Store.update(new AddFormCheckMutation({
+      title: title,
+      description: description,
+      videoUrl: uploadLocation,
+      sportId: 1,
+      mouvementId: 1,
+      visibility: 'public',
+    }), {onFailure, onSuccess});
+  }
+
+  onDrop(file) {
+    console.log(file);
+    this.setState({file: file[0]});
   }
 
   onVisibilityChanged(e) {
@@ -43,11 +101,14 @@ class NewFormCheckPage extends React.Component {
   }
 
   render() {
-    let teams = [
-        { value: 'one', label: 'The Dark Orchestra' },
-        { value: 'two', label: 'Giroux Team' },
-        { value: '3', label: 'Le Sauteur Team' }
-    ];
+    const teams = this.props.viewer.currentUser.memberships.edges.map((team) => {
+      return { value: team.node.rails_id, label: team.node.name }
+    });
+
+    let dropzoneFileSection = this.state.file ? (
+      <div className="form-check-form__field-container__dropzone__inner">{this.state.file.name}</div>
+    ) : <div className="form-check-form__field-container__dropzone__inner">Drop a video here, or click here to upload it.</div>
+
     let athletes = [
         { value: 'one', label: 'XuoriG' },
         { value: 'two', label: 'gLeSauteur' },
@@ -87,7 +148,14 @@ class NewFormCheckPage extends React.Component {
             </div>
 
             <div className="form-check-form__field-container">
-              <label className="form-check-form__label">Mouvement</label>
+              <label className="form-check-form__label">Video</label>
+              <Dropzone onDrop={this.onDrop.bind(this)} className="form-check-form__field-container__dropzone" activeClassName="form-check-form__field-container__dropzone--active">
+                { dropzoneFileSection }
+              </Dropzone>
+            </div>
+
+            <div className="form-check-form__field-container">
+              <label className="form-check-form__label">Sport</label>
               <select className="form-check-form__select-field" ref="mouvement">
                 <option value="1">Weightlifting</option>
                 <option value="1">CrossFit</option>
@@ -131,13 +199,6 @@ class NewFormCheckPage extends React.Component {
               </div>
             </div>
 
-            <div className="form-check-form__field-container">
-              <label className="form-check-form__label">Visibility</label>
-              <Dropzone onDrop={this.onDrop} className="form-check-form__field-container__dropzone" activeClassName="form-check-form__field-container__dropzone--active">
-                <div className="form-check-form__field-container__dropzone__inner">Drop a video here, or click here to upload it.</div>
-              </Dropzone>
-            </div>
-
             <div>
               <button onClick={this.onSubmit.bind(this)} type="submit" className="form-check-form__submit-button">Submit Form Check</button>
             </div>
@@ -154,6 +215,27 @@ export default Relay.createContainer(NewFormCheckPage, {
       fragment on Viewer {
         currentUser {
           email
+          presigned_s3_post {
+            url
+            fields {
+              key
+              success_action_status
+              acl
+              policy
+              x_amz_credential
+              x_amz_algorithm
+              x_amz_date
+              x_amz_signature
+            }
+          }
+          memberships(first: 10) {
+            edges {
+              node {
+                rails_id
+                name
+              }
+            }
+          }
         }
       }
     `
