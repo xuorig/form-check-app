@@ -13,6 +13,8 @@ require('react-select/dist/react-select.css');
 
 import AddFormCheckMutation from '../../mutations/AddFormCheckMutation';
 
+import NewFormCheckSubmitSection from './NewFormCheckSubmitSection';
+
 class NewFormCheckPage extends React.Component {
   constructor(props) {
     super(props);
@@ -21,6 +23,8 @@ class NewFormCheckPage extends React.Component {
       loading: false,
       file: null,
       visibility: null,
+      uploadingVideo: false,
+      videoProgress: 0,
     };
   }
 
@@ -43,6 +47,7 @@ class NewFormCheckPage extends React.Component {
 
     let self = this;
 
+    self.setState({uploadingVideo: true})
     $.ajax({
       url: url,
       data: form,
@@ -56,11 +61,13 @@ class NewFormCheckPage extends React.Component {
         var xhr = $.ajaxSettings.xhr();
         // set the onprogress event handler
         xhr.upload.onprogress = function(evt) {
-          console.log('progress', evt.loaded/evt.total*100)
+          self.setState({videoProgress: Math.round(evt.loaded/evt.total*100)})
+          console.log(self.state.videoProgress);
         };
         // set the onload event handler
         xhr.upload.onload = function() {
-          console.log('DONE!')
+          self.setState({loading: true});
+          self.setState({uploadingVideo: false})
         };
         // return the customized object
         return xhr;
@@ -82,7 +89,6 @@ class NewFormCheckPage extends React.Component {
     let description  = this.refs.description.value;
 
     let onSuccess = (response) => {
-      this.setState({loading: false});
       console.log(response);
       window.location = "/";
     };
@@ -92,8 +98,6 @@ class NewFormCheckPage extends React.Component {
       var error = transaction.getError() || new Error('Mutation failed.');
       console.error(error);
     };
-
-    this.setState({loading: true});
 
     Relay.Store.update(new AddFormCheckMutation({
       title: title,
@@ -213,9 +217,9 @@ class NewFormCheckPage extends React.Component {
               </div>
             </div>
 
-            <div>
-              <button onClick={this.onSubmit.bind(this)} type="submit" className="form-check-form__submit-button">Submit Form Check</button>
-            </div>
+            <NewFormCheckSubmitSection loading={this.state.loading}
+              uploadingVideo={this.state.uploadingVideo} videoProgress={this.state.videoProgress}
+              onSubmit={this.onSubmit.bind(this)}/>
           </form>
         </div>
       </div>
