@@ -6,7 +6,6 @@ export default class AddFormCheckMutation extends Relay.Mutation {
   }
 
   getVariables() {
-    debugger;
     return {
       title: this.props.title,
       description: this.props.description,

@@ -95,8 +95,6 @@ class NewFormCheckPage extends React.Component {
 
     this.setState({loading: true});
 
-    debugger;
-
     Relay.Store.update(new AddFormCheckMutation({
       title: title,
       description: description,

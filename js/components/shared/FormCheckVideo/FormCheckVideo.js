@@ -9,7 +9,7 @@ class FormCheckVideo extends React.Component {
     return (
       <div className={styles['video-container']}>
         <video id="my-video" controls width="100%"
-        poster="http://vjs.zencdn.net/v/oceans.png">
+        poster={this.props.thumb_url}>
           <source src={url} type="video/mp4" />
         </video>
       </div>

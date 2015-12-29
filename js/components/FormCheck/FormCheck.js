@@ -25,7 +25,7 @@ class FormCheck extends React.Component {
            <div className="item-container__form-check__body__description">
              {this.props.formcheck.description}
            </div>
-           <FormCheckVideo url={this.props.formcheck.video_url}/>
+           <FormCheckVideo url={this.props.formcheck.video_url} thumb_url={this.props.formcheck.thumbnail_url}/>
         </div>
         <CommentSection formcheck={this.props.formcheck}/>
       </article>
