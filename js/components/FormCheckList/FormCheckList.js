@@ -5,8 +5,30 @@ import Relay from 'react-relay';
 import FormCheck from '../FormCheck/FormCheck';
 import FormCheckListFilters from './FormCheckListFilters/FormCheckListFilters';
 import styles from './FormCheckList.css';
+import Button from '../shared/Buttons/Button';
 
 class FormCheckList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: false,
+    };
+  }
+
+  loadMore(e) {
+    e.preventDefault();
+    let count = this.props.relay.variables.count;
+    this.setState({loading: true});
+    this.props.relay.setVariables({
+      count: count + 3
+    }, (readyState) => {
+      if (readyState.done) {
+        console.log('done');
+        this.setState({loading: false});
+      }
+    });
+  }
+
   render() {
     return (
       <div className={styles['form-check-list']}>
@@ -17,6 +39,7 @@ class FormCheckList extends React.Component {
               <FormCheck formcheck={edge.node} />
             </div>
           )}
+          <Button loading={this.state.loading} onClickFunc={this.loadMore.bind(this)} text="Load More" />
         </div>
       </div>
     );
@@ -24,10 +47,13 @@ class FormCheckList extends React.Component {
 }
 
 export default Relay.createContainer(FormCheckList, {
+  initialVariables: {
+    count: 3,
+  },
   fragments: {
     viewer: () => Relay.QL`
       fragment on Viewer {
-        formchecks(first: 3) {
+        formchecks(first: $count) {
           edges {
             node {
               ${FormCheck.getFragment('formcheck')}
