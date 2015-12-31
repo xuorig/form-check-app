@@ -1,12 +1,15 @@
-:local(.form-check-list) {
-  height: 100%;
-  display: flex;
-  max-width: 1000px;
-  width: 100%;
-  margin: 0 auto;
-}
+@media only screen and (min-width: 768px) {
+  :local(.form-check-list) {
+    height: 100%;
+    display: flex;
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+  }
 
-:local(.form-check-list__list) {
-  height: 100%;
-  flex: 2;
+
+  :local(.form-check-list__list) {
+    height: 100%;
+    flex: 2;
+  }
 }
