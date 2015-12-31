@@ -12,7 +12,8 @@ export default class AddFormCheckMutation extends Relay.Mutation {
       videoUrl: this.props.videoUrl,
       mouvementId: this.props.mouvementId,
       sportId: this.props.sportId,
-      visibility: this.props.visibility,
+      visibilityType: this.props.visibilityType,
+      teamVisibilityId: this.props.teamVisibilityId,
     };
   }
 

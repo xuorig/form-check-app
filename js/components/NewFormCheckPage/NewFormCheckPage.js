@@ -87,6 +87,8 @@ class NewFormCheckPage extends React.Component {
   submitFormCheck(uploadLocation) {
     let title = this.refs.title.value;
     let description  = this.refs.description.value;
+    let visibilityType = this.state.visibility;
+    let teamVisibilityId = this.state.teamVisibilityId;
 
     let onSuccess = (response) => {
       console.log(response);
@@ -105,7 +107,8 @@ class NewFormCheckPage extends React.Component {
       videoUrl: uploadLocation,
       sportId: 1,
       mouvementId: 1,
-      visibility: 'public',
+      visibilityType: visibilityType,
+      teamVisibilityId: teamVisibilityId,
     }), {onFailure, onSuccess});
   }
 
@@ -114,34 +117,28 @@ class NewFormCheckPage extends React.Component {
     this.setState({file: file[0]});
   }
 
+  getTeams() {
+    return this.props.viewer.currentUser.memberships.edges.map((team) => {
+      return { value: team.node.rails_id, label: team.node.name }
+    });
+  }
+
   onVisibilityChanged(e) {
     this.setState({visibility: e.currentTarget.value});
   }
 
-  render() {
-    const teams = this.props.viewer.currentUser.memberships.edges.map((team) => {
-      return { value: team.node.rails_id, label: team.node.name }
-    });
+  handleTeamChange(team_id) {
+    this.setState({teamVisibilityId: team_id});
+  }
 
+  render() {
     let dropzoneFileSection = this.state.file ? (
       <div className="form-check-form__field-container__dropzone__inner">{this.state.file.name}</div>
     ) : <div className="form-check-form__field-container__dropzone__inner">Drop a video here, or click here to upload it.</div>
 
-    let athletes = [
-        { value: 'one', label: 'XuoriG' },
-        { value: 'two', label: 'gLeSauteur' },
-        { value: '3', label: 'JonNorth' },
-        { value: '4', label: 'JaredEnderton' }
-    ];
-
-    let athletesForm = this.state.visibility === 'athletes' ? (
-      <div style={{marginTop: '10px'}}>
-        <Select multi disabled={false} value={this.state.value} placeholder="Select athletes" options={athletes} onChange={this.handleAthletesChange} />
-      </div>
-    ) : null;
     let teamForm = this.state.visibility === 'team' ? (
       <div style={{marginTop: '10px'}}>
-        <Select multi simpleValue disabled={false} value={this.state.value} placeholder="Select team" options={teams} onChange={this.handleTeamChange} />
+        <Select multi simpleValue disabled={false} value={this.state.teamVisibilityId} placeholder="Select team" options={this.getTeams()} onChange={this.handleTeamChange.bind(this)} />
       </div>
     ) : null;
 
@@ -199,21 +196,15 @@ class NewFormCheckPage extends React.Component {
             <div className="form-check-form__field-container">
               <label className="form-check-form__label">Visibility</label>
               <div className="form-check-form__field-container__radio-container">
-                <input type="radio" name="visibility" value="public" onChange={this.onVisibilityChanged.bind(this)}/>
+                <input type="radio" name="visibility" value="public" onChange={this.onVisibilityChanged.bind(this)} ref="vis"/>
                 <span className="form-check-form__field-container__radio-container__field-label">Public</span>
                 <div className="form-check-form__field-container__radio-container__field_description">Anyone will be able to view and comment on your FormCheck.</div>
               </div>
               <div className="form-check-form__field-container__radio-container">
-                <input type="radio" name="visibility" value="team" onChange={this.onVisibilityChanged.bind(this)}/>
+                <input type="radio" name="visibility" value="team" onChange={this.onVisibilityChanged.bind(this)} ref="vis"/>
                 <span className="form-check-form__field-container__radio-container__field-label">Team only</span>
                 <div className="form-check-form__field-container__radio-container__field_description">Restrict viewing and commenting to your team only.</div>
                 { teamForm }
-              </div>
-              <div className="form-check-form__field-container__radio-container">
-                <input type="radio" name="visibility" value="athletes" onChange={this.onVisibilityChanged.bind(this)}/>
-                <span className="form-check-form__field-container__radio-container__field-label">Athlete only</span>
-                <div className="form-check-form__field-container__radio-container__field_description">Restrict viewing and commenting to selected athletes only.</div>
-                { athletesForm }
               </div>
             </div>
 
