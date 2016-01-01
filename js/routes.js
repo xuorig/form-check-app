@@ -26,7 +26,7 @@ export default (
       queries={ViewerQueries}
     />
     <Route
-        path="/formcheck/:id"
+        path="/formcheck/:slug"
         component={FormCheckPage}
         queries={ViewerQueries}
     />

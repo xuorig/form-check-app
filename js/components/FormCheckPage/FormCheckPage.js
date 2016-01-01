@@ -23,12 +23,12 @@ class FormCheckPage extends React.Component {
 
 export default Relay.createContainer(FormCheckPage, {
   initialVariables: {
-    id: null,
+    slug: null,
   },
   fragments: {
     viewer: () => Relay.QL`
       fragment on Viewer {
-        formcheck(id: $id) {
+        formcheck(id: $slug) {
           ${FormCheck.getFragment('formcheck')}
           ${FormCheckHistory.getFragment('formcheck')}
         }
