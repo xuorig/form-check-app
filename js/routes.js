@@ -33,6 +33,8 @@ export default (
     <Route
         path="/signin"
         component={SignInPage}
+        queries={ViewerQueries}
+        queryParams={['code']}
     />
     <Route
         path="/signup"

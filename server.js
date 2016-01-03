@@ -52,8 +52,8 @@ var compiler = webpack({
 
 var app = new WebpackDevServer(compiler, {
   contentBase: '/public/',
-  proxy: {'/v1/graphql': `http://localhost:${GRAPHQL_PORT}`},
   publicPath: '/js/',
+  historyApiFallback: true,
   stats: {colors: true}
 });
 // Serve static resources

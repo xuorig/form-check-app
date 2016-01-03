@@ -8,6 +8,8 @@ import ReactDOM from 'react-dom';
 import Relay from 'react-relay';
 import { RelayRouter } from 'react-router-relay';
 
+const createBrowserHistory = require('history/lib/createBrowserHistory');
+
 import routes from './routes';
 
 var token = localStorage.getItem('formcheck_token');
@@ -20,6 +22,6 @@ Relay.injectNetworkLayer(
 );
 
 ReactDOM.render(
-  <RelayRouter routes={routes} />,
-  document.getElementById('root')
+  <RelayRouter history={createBrowserHistory()} routes={routes} />,
+    document.getElementById('root')
 );

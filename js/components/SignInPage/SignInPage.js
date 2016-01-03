@@ -8,14 +8,50 @@ import 'babel/polyfill';
 import styles from './SignInPage.css';
 
 import SignInMutation from '../../mutations/SignInMutation';
+import FacebookLoginMutation from '../../mutations/FacebookLoginMutation';
+
 
 class SignInPage extends React.Component {
-  constructor(props) {
+  constructor(props, context) {
     super(props);
     this.state = {
       message: null,
       loading: false,
     };
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+    let app_id = 1008856875844872;
+    let redirect_uri = 'http://localhost:8080/signin';
+    window.location = `https://www.facebook.com/dialog/oauth?client_id=${app_id}&redirect_uri=${redirect_uri}`;
+  }
+
+  componentDidMount() {
+    // Facebook redirect
+    if (this.props.code) {
+      //console.log(this.props.code);
+      this.facebookLogin(this.props.code);
+    }
+  }
+
+  facebookLogin(code) {
+    let onSuccess = (response) => {
+      this.setState({loading: false});
+      console.log(response);
+    };
+
+    let onFailure = (transaction) => {
+      this.setState({loading: false});
+      var error = transaction.getError() || new Error('Mutation failed.');
+      console.error(error);
+    };
+
+    this.setState({loading: true});
+
+    Relay.Store.update(new FacebookLoginMutation({
+      authorization_code: code
+    }), {onFailure, onSuccess});
   }
 
   onSubmit(e) {
@@ -67,6 +103,11 @@ class SignInPage extends React.Component {
               <button onClick={this.onSubmit.bind(this)} type="submit" className="form-check-form__submit-button">Sign In</button>
             </div>
           </form>
+
+          <a href="#" onClick={this.handleClick.bind(this)}>Login</a>
+
+          <div id="status">
+          </div>
         </div>
       </div>
     );
@@ -74,5 +115,16 @@ class SignInPage extends React.Component {
 }
 
 export default Relay.createContainer(SignInPage, {
-  fragments: {}
+  initialVariables: {
+    code: null,
+  },
+  fragments: {
+    viewer: () => Relay.QL`
+      fragment on Viewer {
+        currentUser {
+          email
+        }
+      }
+    `,
+  }
 });

@@ -9,6 +9,7 @@ import FormCheckList from './FormCheckList/FormCheckList';
 
 class App extends React.Component {
   render() {
+    console.log(this.props.code);
     return (
       <div className="app-container">
         <NavBar viewer={this.props.viewer}/>
