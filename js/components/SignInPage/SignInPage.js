@@ -9,6 +9,7 @@ import styles from './SignInPage.css';
 
 import SignInMutation from '../../mutations/SignInMutation';
 import FacebookLoginMutation from '../../mutations/FacebookLoginMutation';
+import FacebookLoginButton from '../shared/Buttons/FacebookLoginButton';
 
 
 class SignInPage extends React.Component {
@@ -101,12 +102,11 @@ class SignInPage extends React.Component {
             <div>
               <button onClick={this.onSubmit.bind(this)} type="submit" className="form-check-form__submit-button">Sign In</button>
             </div>
+            <div>
+              <FacebookLoginButton onClick={this.handleClick.bind(this)} />
+            </div>
           </form>
 
-          <a href="#" onClick={this.handleClick.bind(this)}>Login</a>
-
-          <div id="status">
-          </div>
         </div>
       </div>
     );
