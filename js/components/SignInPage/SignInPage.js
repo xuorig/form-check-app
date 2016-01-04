@@ -24,7 +24,7 @@ class SignInPage extends React.Component {
     e.preventDefault();
     let app_id = 1008856875844872;
     let redirect_uri = 'http://localhost:8080/signin';
-    window.location = `https://www.facebook.com/dialog/oauth?client_id=${app_id}&redirect_uri=${redirect_uri}`;
+    window.location = `https://www.facebook.com/dialog/oauth?client_id=${app_id}&redirect_uri=${redirect_uri}&scope=email,public_profile`;
   }
 
   componentDidMount() {
@@ -36,10 +36,7 @@ class SignInPage extends React.Component {
   }
 
   facebookLogin(code) {
-    let onSuccess = (response) => {
-      this.setState({loading: false});
-      console.log(response);
-    };
+    let onSuccess = this.onLoginSuccess.bind(this);
 
     let onFailure = (transaction) => {
       this.setState({loading: false});
@@ -54,18 +51,19 @@ class SignInPage extends React.Component {
     }), {onFailure, onSuccess});
   }
 
+  onLoginSuccess(response) {
+    this.setState({loading: false});
+    console.log(response);
+    const signinResponse = response.signin || response.facebookLogin;
+    const access_token = signinResponse.access_token;
+    localStorage.setItem('formcheck_token', access_token);
+    window.location = "/";
+  }
+
   onSubmit(e) {
     e.preventDefault();
     let email = this.refs.email.value;
     let password = this.refs.password.value;
-
-    let onSuccess = (response) => {
-      this.setState({loading: false});
-      console.log(response);
-      let access_token = response.signin.access_token;
-      localStorage.setItem('formcheck_token', access_token);
-      window.location = "/";
-    };
 
     let onFailure = (transaction) => {
       this.setState({loading: false});
@@ -74,6 +72,7 @@ class SignInPage extends React.Component {
     };
 
     this.setState({loading: true});
+    let onSuccess = this.onLoginSuccess.bind(this);
 
     Relay.Store.update(new SignInMutation({
       email: email,
